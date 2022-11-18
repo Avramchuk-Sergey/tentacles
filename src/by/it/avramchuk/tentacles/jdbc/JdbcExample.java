@@ -1,18 +1,17 @@
 package by.it.avramchuk.tentacles.jdbc;
 
+import static by.it.avramchuk.tentacles.jdbc.DBParameters.*;
+
 import java.sql.*;
 
 public class JdbcExample {
 
-    public static final String URL_DB = "jdbc:mysql://127.0.0.1/test?useSSL=false";
-    public static final String USER = "root";
-    public static final String PASSWORD = "Novyi4eloveK";
     public static final String SQL_QUERY = "SELECT * FROM users";
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        Class.forName("com.mysql.jdbc.Driver");
+        Class.forName(DB_DRIVER);
 
-        try(Connection connection = DriverManager.getConnection(URL_DB, USER, PASSWORD)) {
+        try(Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
             Statement statement = connection.createStatement();
 
             ResultSet resultSet = statement.executeQuery(SQL_QUERY);
